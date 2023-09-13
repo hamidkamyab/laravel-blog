@@ -5607,6 +5607,11 @@ a.bg-info:hover {
     background-color: #f8cb00 !important;
 }
 
+.bg-white {
+    color: #222 !important;
+    background-color: #fff !important;
+}
+
 a.bg-warning:focus,
 a.bg-warning:hover {
     background-color: #c5a100;
@@ -10701,4 +10706,24 @@ base-chart.chart {
     body.mobile-open .main {
         margin-right: 200px !important;
     }
+}
+
+.bg-content {
+    background-color: #fff;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.m-1 {
+    margin: 0.5rem;
+}
+
+.badge {
+    font-size: 11px;
+    padding: 2.5px 5px;
+    border-radius: 5px;
+    margin: 2px;
+    font-weight: 600;
 }

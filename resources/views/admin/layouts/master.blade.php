@@ -213,7 +213,7 @@
 
             <div class="animated fadeIn">
                 <div class="row">
-                    <div class="col-sm-6 col-lg-3">
+                    {{-- <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-primary">
                             <div class="card-block p-b-0">
                                 <div class="btn-group pull-left">
@@ -299,8 +299,11 @@
                             </div>
                         </div>
                     </div>
-                    <!--/col-->
+                    <!--/col--> --}}
 
+
+
+                    @yield('content')
                 </div>
                 <!--/row-->
             </div>

@@ -5602,6 +5602,11 @@ a.bg-info:hover {
     background-color: #f8cb00 !important;
 }
 
+.bg-white {
+    color: #222 !important;
+    background-color: #fff !important;
+}
+
 a.bg-warning:focus,
 a.bg-warning:hover {
     background-color: #c5a100;
