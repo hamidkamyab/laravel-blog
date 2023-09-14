@@ -2,12 +2,37 @@
     background-color: #fff;
 }
 
+.p-1 {
+    padding: 0.5rem;
+}
+
 .p-2 {
+    padding: 1rem;
+}
+
+.p-4 {
     padding: 2rem;
 }
 
 .m-1 {
     margin: 0.5rem;
+}
+
+.m-3 {
+    margin: 1.5rem;
+}
+
+.my-1 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.w-auto {
+    width: auto;
+}
+
+.d-inline-block {
+    display: inline-block;
 }
 
 .badge {

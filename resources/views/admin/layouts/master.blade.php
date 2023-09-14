@@ -100,8 +100,8 @@
                     مدیریت کاربران
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-user-follow"></i> ثبت کاربر</a>
-                    <a class="nav-link" href="#"><i class="icon-people"></i> لیست کاربران</a>
+                    <a class="nav-link" href="{{route('users.create')}}"><i class="icon-user-follow"></i> ثبت کاربر</a>
+                    <a class="nav-link" href="{{route('users.index')}}"><i class="icon-people"></i> لیست کاربران</a>
                     <a class="nav-link" href="#"><i class="icon-user-following"></i> دسترسی کاربران</a>
                 </li>
 
@@ -304,6 +304,7 @@
 
 
                     @yield('content')
+
                 </div>
                 <!--/row-->
             </div>
