@@ -9,6 +9,7 @@ use App\Models\Photo;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class AdminUserController extends Controller
@@ -98,8 +99,9 @@ class AdminUserController extends Controller
             if($user->photo_id){
                 $photo = Photo::findOrFail($user->photo_id);
                 $path_img = $photo->path;
-                // dd($path_img);
-                Storage::deleteDirectory('/'.$path_img);
+                if (File::exists($path_img)) {
+                    File::delete($path_img);
+                }
                 $photo->delete();
             }
             $file = $request->avatar;

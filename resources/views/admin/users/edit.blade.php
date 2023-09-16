@@ -12,6 +12,7 @@
         <form action="{{ route('users.update',$user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
+
             <div class="form-group">
                 <label for="nameInput">نام کاربر:</label>
                 <input type="text" name="name" id="nameInput" class="form-control" value="{{ $user->name }}" />
@@ -37,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="roleSelect">نقش کاربر:</label>
-                <small>(برای انتخاب چند نقش کلید shift را نگه دارید و سپس نقش ها را انتخاب کنید.)</small>
+                <small>(برای انتخاب چند نقش کلید shift یا ctrl را نگه دارید و سپس نقش ها را انتخاب کنید.)</small>
                 <select id="roleSelect" multiple="multiple" name="roles[]" class="form-control">
                     @foreach ($roles as $key => $role)
                         <option value="{{ $key }}" @if (@$role['selected']) selected="selected" @endif>
