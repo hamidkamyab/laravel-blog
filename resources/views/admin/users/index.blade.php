@@ -19,12 +19,14 @@
                         <td>{{ $key + 1 }}</td>
 
                         <td>
-                            @if($user->photo_id)
+                            @if ($user->photo_id)
                                 <img src={{ asset($user->photo['path']) }} width="48px" height="48px" style="border-radius:50%" />
+                            @else
+                                <img src="{{ asset('img/default.jpg') }}" width="48px" height="48px" style="border-radius:50%" >
                             @endif
                         </td>
 
-                        <td>{{ $user->name }}</td>
+                        <td><a href="{{ route('users.edit', $user->id) }}">{{ $user->name }}</a></td>
 
                         <td>{{ $user->email }}</td>
 
