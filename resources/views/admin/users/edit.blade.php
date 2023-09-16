@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="passInput">رمز عبور کاربر:</label>
-                <input type="password" name="password" id="passInput" class="form-control" />
+                <input type="password" name="password" id="passInput" class="form-control" value="" />
             </div>
             <div class="form-group my-2" style="vertical-align: middle">
                 <div class="flex justify-content-between">
