@@ -42,7 +42,7 @@ class AdminUserController extends Controller
             $file = $request->avatar;
             $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
             $exFile = $file->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$exFile;
+            $fileName = preg_replace('/\s+/', '', $fileName).'_'.time().'.'.$exFile;
             $dir = 'images';
             $file->move($dir,$fileName);
             $path = $dir.'/'.$fileName;
@@ -107,7 +107,7 @@ class AdminUserController extends Controller
             $file = $request->avatar;
             $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
             $exFile = $file->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$exFile;
+            $fileName = preg_replace('/\s+/', '', $fileName).'_'.time().'.'.$exFile;
             $dir = 'images';
             $file->move($dir,$fileName);
             $path = $dir.'/'.$fileName;
@@ -120,6 +120,9 @@ class AdminUserController extends Controller
         }
         $user->name = $request->name;
         $user->email = $request->email;
+        if($request->password != null){
+            $user->password = bcrypt($request->password);
+        }
         $user->status = $request->status;
         $user->save();
         $user->roles()->sync($request->roles);
