@@ -30,4 +30,9 @@ Route::middleware([
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('admin/users',AdminUserController::class);
+
+Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::resource('users',AdminUserController::class);
+});
+
+
