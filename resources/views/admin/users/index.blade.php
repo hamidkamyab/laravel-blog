@@ -3,6 +3,27 @@
 @section('content')
     <h4 class="my-1 bg-white p-2 w-auto d-inline-block">لیست کاربران</h4>
     <div class="bg-white p-4">
+        @if (Session::has('delete_user'))
+            <div class="alert alert-success">
+                <div>
+                    {{Session('delete_user')}}
+                </div>
+            </div>
+        @endif
+        @if (Session::has('add_user'))
+            <div class="alert alert-success">
+                <div>
+                    {{Session('add_user')}}
+                </div>
+            </div>
+        @endif
+        @if (Session::has('edit_user'))
+            <div class="alert alert-success">
+                <div>
+                    {{Session('edit_user')}}
+                </div>
+            </div>
+        @endif
         <table class="table table-hover">
             <thead>
                 <td>#</td>
@@ -20,9 +41,11 @@
 
                         <td>
                             @if ($user->photo_id)
-                                <img src={{ asset($user->photo['path']) }} width="48px" height="48px" style="border-radius:50%" />
+                                <img src={{ asset($user->photo['path']) }} width="48px" height="48px"
+                                    style="border-radius:50%" />
                             @else
-                                <img src="{{ asset('img/default.jpg') }}" width="48px" height="48px" style="border-radius:50%" >
+                                <img src="{{ asset('img/default.jpg') }}" width="48px" height="48px"
+                                    style="border-radius:50%">
                             @endif
                         </td>
 
@@ -54,9 +77,11 @@
             </tbody>
             <thead>
                 <td>#</td>
+                <td>تصویر کاربر</td>
                 <td>نام</td>
                 <td>ایمیل</td>
                 <td>نقش</td>
+                <td>وضعیت</td>
                 <td>تاریخ</td>
             </thead>
         </table>

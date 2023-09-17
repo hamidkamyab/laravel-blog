@@ -56,7 +56,15 @@
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">ثبت کاربر</button>
+                <button type="submit" class="btn btn-primary">ویرایش کاربر</button>
+                <a href="{{route('users.index')}}" class="btn btn-outline-success">بازگشت</a>
+            </div>
+        </form>
+        <form action="{{route('users.destroy',$user->id)}}" method="Post">
+            @csrf
+            @method('DELETE')
+            <div class="form-group" style="height: 10px;">
+                <button type="submit" class="btn btn-outline-danger pull-left">حذف کاربر</button>
             </div>
         </form>
 

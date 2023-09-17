@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class AdminUserController extends Controller
@@ -59,6 +60,7 @@ class AdminUserController extends Controller
         $user->status = $request->status;
         $user->save();
         $user->roles()->attach($request->roles);
+        Session::flash('add_user','کاربر '.$user->name.' با موفقیت اضافه شد!');
         return redirect(route('users.index'));
     }
 
@@ -97,12 +99,11 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         if($request->avatar){
             if($user->photo_id){
-                $photo = Photo::findOrFail($user->photo_id);
-                $path_img = $photo->path;
-                if (File::exists($path_img)) {
-                    File::delete($path_img);
+                // $photo = Photo::findOrFail($user->photo_id);
+                if (File::exists($user->photo->path)) {
+                    File::delete($user->photo->path);
                 }
-                $photo->delete();
+                $user->photo->delete();
             }
             $file = $request->avatar;
             $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
@@ -126,6 +127,7 @@ class AdminUserController extends Controller
         $user->status = $request->status;
         $user->save();
         $user->roles()->sync($request->roles);
+        Session::flash('edit_user','کاربر '.$user->name.' با موفقیت ویرایش شد!');
         return redirect(route('users.index'));
 
     }
@@ -135,6 +137,17 @@ class AdminUserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if($user->photo_id != null){
+            $photo = $user->photo->path;
+            if (File::exists($photo)) {
+                File::delete($photo);
+            }
+            $user->photo->delete();
+        }
+        $name = $user->name;
+        $user->delete();
+        Session::flash('delete_user','کاربر '.$name.' با موفقیت حذف شد!');
+        return redirect(route('users.index'));
     }
 }
