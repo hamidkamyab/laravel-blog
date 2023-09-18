@@ -104,11 +104,11 @@
                     <a class="nav-link" href="{{route('users.index')}}"><i class="icon-people"></i> لیست کاربران</a>
                 </li>
                 <li class="nav-title">
-                    مدیریت پست ها
+                    مدیریت مطالب
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('posts.create')}}"><i class="icon-doc"></i>ایجاد پست</a>
-                    <a class="nav-link" href="{{route('posts.index')}}"><i class="icon-docs"></i> لیست پست ها</a>
+                    <a class="nav-link" href="{{route('posts.create')}}"><i class="icon-doc"></i>ایجاد مطلب جدید</a>
+                    <a class="nav-link" href="{{route('posts.index')}}"><i class="icon-docs"></i> لیست مطالب</a>
                 </li>
                 <li class="nav-title">
                     مدیریت فایل ها

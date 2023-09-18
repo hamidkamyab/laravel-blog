@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label for="emailInput">ایمیل کاربر:</label>
-                <input type="text" name="email" id="emailInput" class="form-control" />
+                <input type="email" name="email" id="emailInput" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="passInput">رمز عبور کاربر:</label>
