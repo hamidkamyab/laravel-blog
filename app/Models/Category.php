@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Photo extends Model
+class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','path','user_id'];
-    public function users(){
-        return $this->belongsTo(User::class);
-    }
     public function posts(){
         return $this->belongsToMany(Post::class);
     }

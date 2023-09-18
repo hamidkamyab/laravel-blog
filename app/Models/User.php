@@ -72,6 +72,9 @@ class User extends Authenticatable
     public function photos(){
         return $this->hasMany(Photo::class);
     }
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 
     public function isAdmin(){
         foreach ($this->roles as $key => $role) {

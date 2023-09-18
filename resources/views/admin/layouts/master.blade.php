@@ -103,7 +103,13 @@
                     <a class="nav-link" href="{{route('users.create')}}"><i class="icon-user-follow"></i> ثبت کاربر</a>
                     <a class="nav-link" href="{{route('users.index')}}"><i class="icon-people"></i> لیست کاربران</a>
                 </li>
-
+                <li class="nav-title">
+                    مدیریت پست ها
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('posts.create')}}"><i class="icon-doc"></i>ایجاد پست</a>
+                    <a class="nav-link" href="{{route('posts.index')}}"><i class="icon-docs"></i> لیست پست ها</a>
+                </li>
                 <li class="nav-title">
                     مدیریت فایل ها
                 </li>
