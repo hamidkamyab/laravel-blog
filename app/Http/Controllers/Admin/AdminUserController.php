@@ -99,7 +99,6 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         if($request->avatar){
             if($user->photo_id){
-                // $photo = Photo::findOrFail($user->photo_id);
                 if (File::exists($user->photo->path)) {
                     File::delete($user->photo->path);
                 }

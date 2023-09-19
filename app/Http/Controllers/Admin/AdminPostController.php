@@ -9,6 +9,7 @@ use App\Models\Photo;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class AdminPostController extends Controller
@@ -53,9 +54,9 @@ class AdminPostController extends Controller
         $photo_id = $photo->id;
 
         if($request->slug == null || $request->slug == ''){
-            $slug = make_slug($request->title, '-');
+            $slug = make_slug($request->title);
         }else{
-            $slug = make_slug($request->slug, '-');
+            $slug = make_slug($request->slug);
         }
         $post->title = $request->title;
         $post->slug = $slug;
@@ -85,7 +86,18 @@ class AdminPostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $cat = Category::pluck('title','id');
+        $categories = [];
+        foreach($cat as $key=>$catItem){
+            $categories[$key]['title'] = $catItem;
+            foreach($post->categories as $category){
+                if($key == $category->id){
+                    $categories[$key]['selected'] = 1;
+                }
+            }
+        }
+        return view('admin.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -93,7 +105,46 @@ class AdminPostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        if($request->photo != null){
+            $photo = $post->photos[0];
+            if($photo->id){
+                if (File::exists($photo->path)) {
+                    File::delete($photo->path);
+                }
+                $photo->delete();
+            }
+            $file = $request->photo;
+            $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
+            $exFile = $file->getClientOriginalExtension();
+            $fileName = preg_replace('/\s+/', '', $fileName).'_'.time().'.'.$exFile;
+            $dir = 'images';
+            $file->move($dir,$fileName);
+            $path = $dir.'/'.$fileName;
+            $newPhoto = Photo::create([
+                'name' => $file->getClientOriginalName(),
+                'path' => $path,
+                'user_id' => Auth::id()
+            ]);
+            $post->photos()->attach($newPhoto->id);
+        }
+
+        $post->title = $request->title;
+
+        if($request->slug == null || $request->slug == ''){
+            $slug = make_slug($request->title);
+        }else{
+            $slug = make_slug($request->slug);
+        }
+        $post->slug = $slug;
+        $post->body = $request->body;
+        $post->meta_description = $request->meta_description;
+        $post->meta_keywords =  $request->meta_keywords;
+        $post->status = $request->status;
+        $post->save();
+        $post->categories()->sync($request->categories);
+        Session::flash('edit_post','مطلب با موفقیت ویرایش شد!');
+        return redirect(route('posts.index'));
     }
 
     /**

@@ -10737,6 +10737,11 @@ base-chart.chart {
     margin-bottom: 0.5rem;
 }
 
+.my-2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 .w-auto {
     width: auto;
 }
@@ -10751,4 +10756,24 @@ base-chart.chart {
     border-radius: 5px;
     margin: 2px;
     font-weight: 600;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-grow-3 {
+    flex-grow: 3;
+}
+
+.justify-content-between {
+    justify-content: space-between;
 }

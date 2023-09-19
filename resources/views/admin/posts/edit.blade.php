@@ -9,58 +9,74 @@
                 @endforeach
             </div>
         @endif
-        <form action="{{ route('users.update',$user->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
             <div class="form-group">
-                <label for="nameInput">نام کاربر:</label>
-                <input type="text" name="name" id="nameInput" class="form-control" value="{{ $user->name }}" />
+                <label for="titleInput">عنوان:</label>
+                <input type="text" name="title" id="titleInput" class="form-control" value="{{ $post->title }}" />
             </div>
             <div class="form-group">
-                <label for="emailInput">ایمیل کاربر:</label>
-                <input type="text" name="email" id="emailInput" class="form-control" value="{{ $user->email }}" />
+                <label for="slugInput">لینک(نام مستعار):</label>
+                <small class="text-danger">(درصورت عدم ورود، عنوان مطلب برای نام مستعار نیز قرار میگیرد!)</small>
+                <input type="text" name="slug" id="slugInput" class="form-control" value="{{ $post->slug }}" />
             </div>
             <div class="form-group">
-                <label for="passInput">رمز عبور کاربر:</label>
-                <input type="password" name="password" id="passInput" class="form-control" value="" />
+                <label for="bodyInput">متن:</label>
+                <textarea name="body" id="bodyInput" class="form-control">{{ $post->body }}</textarea>
             </div>
-            <div class="form-group my-2" style="vertical-align: middle">
-                <div class="flex justify-content-between">
-                    <label for="profileInput">تصویر پروفایل</label>
-                    @if (@$user->photo['path'])
-                        <img src="{{ asset($user->photo['path']) }}" width="64px" height="64px">
-                    @else
-                        <img src="{{ asset('img/default.jpg') }}" width="64px" height="64px">
-                    @endif
-                    <input id="profileInput" class="form-control form-control-file" type="file" name="avatar">
+            <div class="form-group my-2">
+                <div class="d-flex align-items-center" >
+                    <div class="flex-grow-3">
+                        <label for="photoInput">تصویر مطلب</label>
+                        <input id="photoInput" class="form-control form-control-file" type="file" name="photo">
+                    </div>
+
+                    <div class="flex-grow-1">
+                        <img src="{{asset($post->photos[0]->path)}}" width="148px" height="148px" style="float: left; border-radius:10px" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="roleSelect">نقش کاربر:</label>
-                <small>(برای انتخاب چند نقش کلید shift یا ctrl را نگه دارید و سپس نقش ها را انتخاب کنید.)</small>
-                <select id="roleSelect" multiple="multiple" name="roles[]" class="form-control">
-                    @foreach ($roles as $key => $role)
-                        <option value="{{ $key }}" @if (@$role['selected']) selected="selected" @endif>
-                            {{ $role['title'] }}
-                        </option>
-                    @endforeach
-                </select>
             </div>
 
             <div class="form-group">
-                <label for="statusSelect">وضعیت کاربر:</label>
-                <select id="statusSelect" class="form-control" name="status">
-                    <option value="0" @if ($user->status == 0) selected="selected" @endif>غیرفعال</option>
-                    <option value="1" @if ($user->status == 1) selected="selected" @endif>فعال</option>
+                <label for="metaDescriptionInput">متا توضیحات:</label>
+                <textarea name="meta_description" id="metaDescriptionInput" class="form-control">{{ $post->meta_description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="metaKeywordsInput">کلمات کلیدی:</label>
+                <input name="meta_keywords" id="metaKeywordsInput" class="form-control"
+                    value="{{ $post->meta_keywords }}" />
+            </div>
+
+            <div class="form-group">
+                <label for="roleSelect">دسته بندی:</label>
+                <small>(برای انتخاب چند نقش کلید shift یا ctrl را نگه دارید و سپس نقش ها را انتخاب کنید.)</small>
+                <select id="categorySelect" multiple="multiple" name="categories[]" class="form-control">
+                    @foreach ($categories as $key => $category)
+                        <option value="{{ $key }}" @if (@$category['selected'] == 1) selected="selected" @endif>
+                            {{ $category['title'] }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">
+
+                <label for="statusSelect">وضعیت مطلب:</label>
+                <select id="statusSelect" class="form-control" name="status">
+                    <option value="0" @if ($post->status == 0) selected="selected" @endif>
+                        منتشر نشده
+                    </option>
+                    <option value="1" @if ($post->status == 1) selected="selected" @endif>منتشر شده
+                    </option>
+                </select>
+
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary">ویرایش کاربر</button>
-                <a href="{{route('users.index')}}" class="btn btn-outline-success">بازگشت</a>
+                <a href="{{ route('posts.index') }}" class="btn btn-outline-success">بازگشت</a>
             </div>
         </form>
-        <form action="{{route('users.destroy',$user->id)}}" method="Post">
+        <form action="{{ route('posts.destroy', $post->id) }}" method="Post">
             @csrf
             @method('DELETE')
             <div class="form-group" style="height: 10px;">
