@@ -152,6 +152,19 @@ class AdminPostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        foreach ($post->photos as $key => $photo) {
+            $photo->delete();
+        }
+        if($post->photos[0] != null){
+            foreach ($post->photos as $key => $photo) {
+                if (File::exists($photo->path)) {
+                    File::delete($photo->path);
+                }
+            }
+        }
+        $post->delete();
+        Session::flash('delete_post','مطلب با موفقیت حذف شد!');
+        return redirect(route('posts.index'));
     }
 }
