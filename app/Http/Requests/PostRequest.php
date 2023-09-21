@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class CreatePostRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,6 +21,7 @@ class CreatePostRequest extends FormRequest
         }else{
             $this->merge(['slug'=>make_slug($this->title)]);
         }
+
     }
 
     /**
@@ -32,10 +34,15 @@ class CreatePostRequest extends FormRequest
         return [
             'title' => 'required|min:8|max:255',
             'body' => 'required|min:8',
-            'photo' => 'required',
+
             'categories' => 'required',
             'status' => 'required',
-            'slug' => 'nullable|min:4|max:255|unique:posts'
+            'slug' => [
+                'nullable',
+                'min:4',
+                'max:255',
+                Rule::unique('posts','slug')->ignore(request()->post)
+            ]
         ];
     }
 }

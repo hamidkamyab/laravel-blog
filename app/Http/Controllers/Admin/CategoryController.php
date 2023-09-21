@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $category->meta_description = $request->meta_description;
         $category->meta_keywords = $request->meta_keywords;
         $category->save();
-        Session::flash('add_categories','پست جدید با موفقیت اضافه شد!');
+        Session::flash('add_category','دسته بندی جدید با موفقیت اضافه شد!');
         return redirect(route('categories.index'));
     }
 
@@ -55,15 +55,23 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->title = $request->title;
+        $category->slug = $request->slug;
+        $category->meta_description = $request->meta_description;
+        $category->meta_keywords = $request->meta_keywords;
+        $category->save();
+        Session::flash('edit_category','دسته بندی با موفقیت ویرایش شد!');
+        return redirect(route('categories.index'));
     }
 
     /**

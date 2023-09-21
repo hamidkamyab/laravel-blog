@@ -32,9 +32,12 @@
                         <label for="photoInput">تصویر مطلب</label>
                         <input id="photoInput" class="form-control form-control-file" type="file" name="photo">
                     </div>
-
                     <div class="flex-grow-1">
-                        <img src="{{asset($post->photos[0]->path)}}" width="148px" height="148px" style="float: left; border-radius:10px" />
+                        @if (@$post->photos[0])
+                            <img src="{{asset($post->photos[0]->path)}}" width="148px" height="148px" style="float: left; border-radius:10px" />
+                        @else
+                            <img src="{{ asset('img/default.jpg') }}" width="148px" height="148px" style="float: left; border-radius:10px" />
+                        @endif
                     </div>
                 </div>
             </div>

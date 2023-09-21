@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -31,7 +32,12 @@ class CategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3|max:255',
-            'slug' => 'nullable|min:3|max:255|unique:categories',
+            'slug' => [
+                'nullable',
+                'min:3',
+                'max:255',
+                Rule::unique('categories','slug')->ignore(request()->category)
+            ],
             'meta_description' => 'required',
             'meta_keywords' => 'required',
         ];
