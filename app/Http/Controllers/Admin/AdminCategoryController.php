@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CategoryRequest;
 
-class CategoryController extends Controller
+class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -79,6 +79,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        Session::flash('delete_category','دسته بندی با موفقیت حذف شد!');
+        return redirect(route('categories.index'));
     }
 }
