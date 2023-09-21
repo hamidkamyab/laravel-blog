@@ -17,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label for="slugInput">لینک(نام مستعار):</label>
-                <small class="text-danger">(درصورت عدم ورود، عنوان مطلب برای نام مستعار نیز قرار میگیرد!)</small>
+                <small class="text-danger">(درصورت عدم ورود نام مستعار، عنوان مطلب برای نام مستعار نیز قرار میگیرد!)</small>
                 <input type="text" name="slug" id="slugInput" class="form-control" />
             </div>
             <div class="form-group">

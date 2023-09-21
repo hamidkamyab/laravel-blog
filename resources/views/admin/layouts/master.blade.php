@@ -111,59 +111,26 @@
                     <a class="nav-link" href="{{route('posts.index')}}"><i class="icon-docs"></i> لیست مطالب</a>
                 </li>
                 <li class="nav-title">
+                    مدیریت دسته بندی ها
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('categories.create')}}"><i class="icon-tag"></i>ایجاد دسته بندی جدید</a>
+                    <a class="nav-link" href="{{route('categories.index')}}"><i class="icon-layers"></i> لیست دسته بندی ها</a>
+                </li>
+                <li class="nav-title">
                     مدیریت فایل ها
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-docs"></i> لیست فایل ها</a>
                 </li>
 
-                <li class="nav-title">
+                {{-- <li class="nav-title">
                     گزارش گیری
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-people"></i> کاربران</a>
                     <a class="nav-link" href="#"><i class="icon-docs"></i> فایل ها</a>
-                </li>
-
-
-                <!--<li class="nav-item nav-dropdown">
-                     <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Icons</a>
-                     <ul class="nav-dropdown-items">
-                         <li class="nav-item">
-                             <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
-                         </li>
-                     </ul>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Widgets <span class="tag tag-info">NEW</span></a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Charts</a>
-                 </li>-->
-                <!--<li class="divider"></li>
-                 <li class="nav-title">
-                     Extras
-                 </li>
-                 <li class="nav-item nav-dropdown">
-                     <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Pages</a>
-                     <ul class="nav-dropdown-items">
-                         <li class="nav-item">
-                             <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
-                         </li>
-                     </ul>
-                 </li>-->
+                </li> --}}
 
             </ul>
         </nav>

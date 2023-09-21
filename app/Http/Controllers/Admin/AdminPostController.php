@@ -52,14 +52,8 @@ class AdminPostController extends Controller
             'user_id' => Auth::id()
         ]);
         $photo_id = $photo->id;
-
-        if($request->slug == null || $request->slug == ''){
-            $slug = make_slug($request->title);
-        }else{
-            $slug = make_slug($request->slug);
-        }
         $post->title = $request->title;
-        $post->slug = $slug;
+        $post->slug = $request->slug;
         $post->body = $request->body;
         $post->meta_description = $request->meta_description;
         $post->meta_keywords = $request->meta_keywords;
