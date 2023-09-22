@@ -121,9 +121,11 @@
                     مدیریت فایل ها
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-docs"></i> لیست فایل ها</a>
+                    <a class="nav-link" href="{{route('photos.index')}}"><i class="icon-docs"></i> لیست فایل ها</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-upload"></i> آپلود فایل</a>
+                </li>
                 {{-- <li class="nav-title">
                     گزارش گیری
                 </li>

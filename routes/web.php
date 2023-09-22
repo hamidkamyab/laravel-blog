@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminPhotoController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('users',AdminUserController::class);
     Route::resource('posts',AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);
+    Route::resource('photos',AdminPhotoController::class);
 });
 
 
