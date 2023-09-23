@@ -15,3 +15,9 @@ mix.scripts([
     // 'resources/admin/js/libs/pace.min.js',
     'resources/admin/js/views/main.js',
 ], 'public/js/all.js')
+
+mix.styles([
+    'resources/admin/css/dropzone.min.css',
+], 'public/css/dropzone.css').scripts([
+    'resources/admin/js/dropzone.min.js',
+], 'public/js/dropzone.js')

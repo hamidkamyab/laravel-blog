@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class AdminPhotoController extends Controller
 {
@@ -22,7 +25,7 @@ class AdminPhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.photos.create');
     }
 
     /**
@@ -30,7 +33,22 @@ class AdminPhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
+            $exFile = $file->getClientOriginalExtension();
+            $fileName = preg_replace('/\s+/', '', $fileName).'_'.time().'.'.$exFile;
+            $dir = 'images';
+            $res = $file->move($dir,$fileName);
+            if($res){
+                $path = $dir.'/'.$fileName;
+                Photo::create([
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $path,
+                    'user_id' => Auth::id()
+                ]);
+            }
+        }
     }
 
     /**
@@ -62,6 +80,14 @@ class AdminPhotoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $photo = Photo::findOrFail($id);
+        File::delete($photo->path);
+        $res = $photo->delete();
+        if($res){
+            Session::flash('delete_photo','تصویر با موفقیت حذف شد');
+        }else{
+            Session::flash('delete_photo','عملیات با اشکالی مواجه شد، لطفا مجددا تلاش کنید!');
+        }
+        return redirect(route('photos.index'));
     }
 }

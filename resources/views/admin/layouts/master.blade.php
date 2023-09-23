@@ -18,7 +18,10 @@
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
     <title>CoreUI Bootstrap 4 Admin Template</title>
     <!-- Icons -->
+
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+    @yield('styles')
+
     <!-- all js and plugins -->
     <script src="https://cdn.jsdelivr.net/npm/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="{{ asset('js/all.js') }}" type="application/javascript"></script>
@@ -124,7 +127,7 @@
                     <a class="nav-link" href="{{route('photos.index')}}"><i class="icon-docs"></i> لیست فایل ها</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-upload"></i> آپلود فایل</a>
+                    <a class="nav-link" href="{{route('photos.create')}}"><i class="icon-upload"></i> آپلود فایل</a>
                 </li>
                 {{-- <li class="nav-title">
                     گزارش گیری
@@ -558,5 +561,7 @@
 
 
 </body>
+
+    @yield('scripts')
 
 </html>
