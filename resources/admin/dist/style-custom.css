@@ -67,3 +67,12 @@
 .justify-content-between {
     justify-content: space-between;
 }
+
+.col-6 {
+    float: right;
+    width: 50%;
+}
+
+.fs-5 {
+    font-size: 14px
+}

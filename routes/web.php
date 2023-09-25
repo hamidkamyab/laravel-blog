@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminPhotoController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware('admin')->group(function () {
+    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard.index');
     Route::resource('users',AdminUserController::class);
     Route::resource('posts',AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);
