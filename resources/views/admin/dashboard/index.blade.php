@@ -82,8 +82,10 @@
                         <tbody>
                             @foreach ($posts as $post)
                                 <tr>
-                                    <td>{{  Str::limit($post->title,15,'...') }}</td>
-                                    <td>{{ $post->user->name }}</td>
+                                    <td>
+                                        <a href="{{route('posts.edit',$post->id)}}">{{  Str::limit($post->title,15,'...') }}</a>
+                                    </td>
+                                    <td> {{ $post->user->name }} </td>
                                     <td>
                                         @if ($post->status == 0)
                                             <span class="badge bg-danger">

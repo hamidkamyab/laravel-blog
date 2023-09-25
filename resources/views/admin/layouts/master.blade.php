@@ -19,12 +19,12 @@
     <title>CoreUI Bootstrap 4 Admin Template</title>
     <!-- Icons -->
 
-    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     @yield('styles')
 
     <!-- all js and plugins -->
     <script src="https://cdn.jsdelivr.net/npm/tether@1.2.4/dist/js/tether.min.js"></script>
-    <script src="{{ asset('js/all.js') }}" type="application/javascript"></script>
+    <script src="{{ asset('js/admin.js') }}" type="application/javascript"></script>
 </head>
 <!-- BODY options, add following classes to body to change options
          1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
