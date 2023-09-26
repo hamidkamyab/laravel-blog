@@ -19,7 +19,7 @@ class AdminPostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('categories', 'photos', 'user')->get();
+        $posts = Post::with('categories', 'photos', 'user')->paginate(5);
         return view('admin.posts.index', compact('posts'));
     }
 

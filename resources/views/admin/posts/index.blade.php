@@ -38,7 +38,7 @@
             <tbody>
                 @foreach ($posts as $key => $post)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
+                        <td>{{ (($posts->currentPage()-1) * 5) + ($key + 1) }}</td>
                         <td>
                             @if (@$post->photos[0])
                                 <img src=" {{ asset($post->photos[0]->path) }}" width="58" height="58" />
@@ -91,5 +91,8 @@
                 <td>تاریخ ایجاد</td>
             </thead>
         </table>
+        <div>
+            {{$posts->links()}}
+        </div>
     </div>
 @endsection

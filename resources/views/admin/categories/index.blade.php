@@ -33,7 +33,7 @@
             <tbody>
                 @foreach ($categories as $key => $category)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
+                        <td>{{ (($categories->currentPage()-1) * 5) + ($key + 1) }}</td>
                         <td><a href="{{ route('categories.edit', $category->id) }}">{{ $category->title }}</a></td>
                         <td>{{ verta($category->created_at) }}</td>
                     </tr>
@@ -45,5 +45,8 @@
                 <td>تاریخ ایجاد</td>
             </thead>
         </table>
+        <div>
+            {{$categories->links()}}
+        </div>
     </div>
 @endsection

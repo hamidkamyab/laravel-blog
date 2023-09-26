@@ -37,7 +37,7 @@
             <tbody>
                 @foreach ($users as $key => $user)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
+                        <td>{{ (($users->currentPage()-1) * 5) + ($key + 1) }}</td>
 
                         <td>
                             @if ($user->photo_id)
@@ -85,6 +85,9 @@
                 <td>تاریخ</td>
             </thead>
         </table>
+        <div>
+            {{$users->links()}}
+        </div>
     </div>
 @endsection
 
