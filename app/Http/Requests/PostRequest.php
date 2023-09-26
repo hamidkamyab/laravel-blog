@@ -34,7 +34,6 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required|min:8|max:255',
             'body' => 'required|min:8',
-            'photo' => 'required',
             'categories' => 'required',
             'status' => 'required',
             'slug' => [

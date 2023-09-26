@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(5);
-        return view('frontend.home.index',compact('posts'));
+        $posts = Post::orderBy('created_at','desc')->where('status','1')->paginate(5);
+        $categories = Category::all();
+        return view('frontend.home.index',compact('posts','categories'));
     }
 }

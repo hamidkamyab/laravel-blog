@@ -1,5 +1,10 @@
 ﻿@extends('frontend.layouts.master')
 
+
+@section('navigation')
+    @include('frontend.partials.navigation',$categories)
+@endsection
+
 @section('content')
     @foreach ($posts as $post)
         <div class="card post-item bg-transparent border-0 mb-5">
@@ -26,15 +31,21 @@
                         @endforeach
                     </li>
                 </ul>
-                <p class="card-text my-4">
-                    {{ Str::limit($post->body, 250, '...') }}
-                </p>
-                <a href="post-details.html" class="btn btn-primary">Read More <img src="img/arrow-right.png"
+                <div class="d-flex flex-row p-2 align-items-center" style="gap:10px; text-align: right; direction: rtl">
+                    @if (@$post->photos[0])
+                        <img src=" {{ asset($post->photos[0]->path) }}" style="min-width:128px;width:128px;height:128px;" class="rounded-circle" />
+                    @else
+                        <img src="{{ asset('img/default.jpg') }}" style="min-width:128px;width:128px;height:128px;" class="rounded-circle">
+                    @endif
+                    <p class="card-text my-4">
+                        {{ Str::limit($post->body, 250, '...') }}
+                    </p>
+                </div>
+                <a href="post-details.html" class="btn btn-primary"><strong>ادامه مطلب</strong><img src="img/arrow-right.png"
                         alt=""></a>
             </div>
         </div>
         <!-- end of post-item -->
     @endforeach
-    {{$posts->links()}}
+    {{ $posts->links() }}
 @endsection
-

@@ -39,19 +39,21 @@ class AdminPostController extends Controller
     {
         $post = new Post;
 
-        $file = $request->file('photo');
-        $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
-        $exFile = $file->getClientOriginalExtension();
-        $fileName = preg_replace('/\s+/', '', $fileName) . '_' . time() . '.' . $exFile;
-        $dir = 'images';
-        $file->move($dir, $fileName);
-        $path = $dir . '/' . $fileName;
-        $photo = Photo::create([
-            'name' => $file->getClientOriginalName(),
-            'path' => $path,
-            'user_id' => Auth::id()
-        ]);
-        $photo_id = $photo->id;
+        if($request->file('photo')){
+            $file = $request->file('photo');
+            $fileName = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getClientOriginalName());
+            $exFile = $file->getClientOriginalExtension();
+            $fileName = preg_replace('/\s+/', '', $fileName) . '_' . time() . '.' . $exFile;
+            $dir = 'images';
+            $file->move($dir, $fileName);
+            $path = $dir . '/' . $fileName;
+            $photo = Photo::create([
+                'name' => $file->getClientOriginalName(),
+                'path' => $path,
+                'user_id' => Auth::id()
+            ]);
+            $photo_id = $photo->id;
+        }
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->body = $request->body;
