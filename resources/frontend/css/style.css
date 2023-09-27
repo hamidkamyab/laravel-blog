@@ -879,3 +879,9 @@ footer ul li:last-child a {
     background-color: #1D1C21 !important;
     /* تغییر رنگ پس‌زمینه پیج‌ها به قرمز */
 }
+
+.bg-dark-800 {
+    background-color: rgb(40, 40, 45) !important;
+    color: #fff;
+    border: 3px solid rgb(207, 207, 207) !important;
+}

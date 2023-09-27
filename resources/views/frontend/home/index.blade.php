@@ -13,18 +13,19 @@
             </a>
             <div class="card-body px-0">
                 <h2 class="card-title">
-                    <a class="text-white opacity-75-onHover" href="post-details.html">{{ $post->title }}</a>
+                    <a class="text-white opacity-75-onHover" href="{{route('post.show',$post->slug)}}">{{ $post->title }}</a>
                 </h2>
                 <ul class="post-meta mt-3">
                     <li class="d-inline-block mr-3">
                         <span class="fas fa-clock text-primary"></span>
-                        <a class="ml-1" href="#">
-                            {{ verta($post->created_at) }}
+                        <a class="ml-1" href="#" dir="rtl">
+                            {{ verta($post->created_at)->formatDifference() }}
                         </a>
                     </li>
                     <li class="d-inline-block">
                         <span class="fas fa-list-alt text-primary"></span>
-                        @foreach ($post->categories as $category)
+                        @foreach ($post->categories as $key=>$category)
+                            @if($key != 0)<b class="text-primary mx-1">-</b>@endif
                             <a class="ml-1" href="#">
                                 {{ $category->title }}
                             </a>
@@ -41,7 +42,7 @@
                         {{ Str::limit($post->body, 250, '...') }}
                     </p>
                 </div>
-                <a href="post-details.html" class="btn btn-primary"><strong>ادامه مطلب</strong><img src="img/arrow-right.png"
+                <a  href="{{route('post.show',$post->slug)}}" class="btn btn-primary"><strong>ادامه مطلب</strong><img src="img/arrow-right.png"
                         alt=""></a>
             </div>
         </div>

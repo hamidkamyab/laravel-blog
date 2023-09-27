@@ -46,8 +46,8 @@
 
 <!-- start of sidenav -->
 <aside><div class="sidenav position-sticky d-flex flex-column justify-content-between">
-    <a class="navbar-brand" href="index.html" class="logo">
-        <img src="img/logo.png" alt="">
+    <a class="navbar-brand" href="{{route('home')}}" class="logo">
+        <img src="{{asset('img/logo.png')}}" alt="">
     </a>
     <!-- end of navbar-brand -->
 
@@ -87,8 +87,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-6">
-                <a href="index.html">
-                    <img src="img/logo.png" alt="">
+                <a href="{{route('home')}}">
+                    <img src="{{asset('img/logo.png')}}" alt="">
                 </a>
             </div>
             <div class="col-6 text-right">
