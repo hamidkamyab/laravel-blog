@@ -45,3 +45,4 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 
 Route::get('post/{slug}',[PostController::class,'show'])->name('post.show');
+Route::get('search',[PostController::class,'search'])->name('post.search');

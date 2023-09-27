@@ -892,6 +892,10 @@ footer ul li:last-child a {
     color: #fff;
     border: 3px solid rgb(207, 207, 207) !important;
 }
+
+.btn-outline-red {
+    border: 2px solid #E4112F !important;
+}
 /*!
  * Font Awesome Free 5.13.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

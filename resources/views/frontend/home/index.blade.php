@@ -1,5 +1,10 @@
 ﻿@extends('frontend.layouts.master')
 
+@section('meta')
+    <meta name="description" content="وبلاگ شخصی حمید کامیاب">
+    <meta name="keywords" content="وبلاگ، حمید کامیاب، وبسایت، وبلاگ شخصی">
+    <meta name="author" content="حمید کامیاب">
+@endsection
 
 @section('navigation')
     @include('frontend.partials.navigation',$categories)
@@ -12,10 +17,10 @@
                 <img class="card-img-top rounded-0" src="img/post/post-lg/01.png" alt="">
             </a>
             <div class="card-body px-0">
-                <h2 class="card-title">
+                <h2 class="card-title mr-3" style="text-align: right" dir="rtl">
                     <a class="text-white opacity-75-onHover" href="{{route('post.show',$post->slug)}}">{{ $post->title }}</a>
                 </h2>
-                <ul class="post-meta mt-3">
+                <ul class="post-meta mt-3" style="text-align: right" dir="rtl">
                     <li class="d-inline-block mr-3">
                         <span class="fas fa-clock text-primary"></span>
                         <a class="ml-1" href="#" dir="rtl">
@@ -42,8 +47,11 @@
                         {{ Str::limit($post->body, 250, '...') }}
                     </p>
                 </div>
-                <a  href="{{route('post.show',$post->slug)}}" class="btn btn-primary"><strong>ادامه مطلب</strong><img src="img/arrow-right.png"
-                        alt=""></a>
+                <a  href="{{route('post.show',$post->slug)}}" class="btn btn-primary btn-sm">
+                    <strong>ادامه مطلب</strong>
+                    <img src="img/arrow-right.png"
+                        alt="">
+                </a>
             </div>
         </div>
         <!-- end of post-item -->

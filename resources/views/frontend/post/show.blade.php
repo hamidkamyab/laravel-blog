@@ -1,25 +1,16 @@
 @extends('frontend.layouts.master')
 
+@section('meta')
+    <meta name="description" content="{{$post->meta_description}}">
+    <meta name="keywords" content="{{$post->meta_keywords}}">
+    <meta name="author" content="{{$post->user->name}}">
+@endsection
+
 @section('navigation')
     @include('frontend.partials.navigation',$categories)
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-5 col-md-8">
-            <form class="search-form" action="#">
-                <div class="input-group">
-                    <input type="search" class="form-control bg-transparent shadow-none rounded-0" placeholder="Search here">
-                    <div class="input-group-append">
-                        <button class="btn" type="submit">
-                            <span class="fas fa-search"></span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="row justify-content-between">
         <div class="col-lg-10">
             <h3 class="text-white add-letter-space mt-4" dir="rtl" style="text-align:right;">{{ $post->title }}</h3>
@@ -67,6 +58,9 @@
                         <div class="form-group">
                             <label for="bodyInput" style="font-weight: 700">متن دیدگاه</label>
                             <textarea class="form-control bg-dark-800 h-auto" id="bodyInput" rows="10" ></textarea>
+                        </div>
+                        <div class="form-group">
+                           <button class="btn btn-sm btn-outline-red" style="letter-spacing: 0em;font-weight: bold" type="submit">ثـبـت نـظـر</button>
                         </div>
                     </form>
                 </div>
