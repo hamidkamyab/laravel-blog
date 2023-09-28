@@ -44,6 +44,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('photos',AdminPhotoController::class);
     Route::patch('comments/{id}',[AdminCommentController::class,'action'])->name('comments.action');
+    Route::post('comments/{id}',[AdminCommentController::class,'replay'])->name('comments.replay');
     Route::resource('comments',AdminCommentController::class);
 });
 

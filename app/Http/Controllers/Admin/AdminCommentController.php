@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AdminCommentController extends Controller
@@ -14,7 +15,7 @@ class AdminCommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::with('post')->paginate(5);
+        $comments = Comment::with('post')->where('isAdmin',0)->paginate(5);
         return view('admin.comments.index',compact('comments'));
     }
 
@@ -31,7 +32,7 @@ class AdminCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -39,7 +40,8 @@ class AdminCommentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comment = Comment::with('post')->findOrFail($id);
+        return view('admin.comments.show',compact('comment'));
     }
 
     /**
@@ -76,6 +78,20 @@ class AdminCommentController extends Controller
         }else{
             Session::flash('action_comment','دیدگاه مورد نظر از حالت انتشار خارج شد!');
         }
+        return redirect(route('comments.index'));
+    }
+    public function replay(Request $request, string $id)
+    {
+        $comment = Comment::with('post')->findOrFail($id);
+        Comment::create([
+            'name' => Auth::user()->name,
+            'parent_id' => $id,
+            'post_id' => $comment->post->id,
+            'body' => $request->body,
+            'status' => 1,
+            'isAdmin' => 1,
+        ]);
+        Session::flash('replay_comment','پاسخ دیدگاه با موفقیت ثبت و منتشر شد!');
         return redirect(route('comments.index'));
     }
 }

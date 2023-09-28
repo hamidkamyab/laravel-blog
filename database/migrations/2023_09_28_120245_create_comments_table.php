@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('body');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');

@@ -10,10 +10,10 @@
                 </div>
             </div>
         @endif
-        @if (Session::has('add_comment'))
+        @if (Session::has('replay_comment'))
             <div class="alert alert-success">
                 <div>
-                    {{Session('add_comment')}}
+                    {{Session('replay_comment')}}
                 </div>
             </div>
         @endif
@@ -33,6 +33,7 @@
                 <td>تاریخ ایجاد</td>
                 <td>وضعیت</td>
                 <td>عملیات</td>
+                <td>مشاهده</td>
             </thead>
             <tbody>
                 @foreach ($comments as $key => $comment)
@@ -76,6 +77,11 @@
                                     @endif
                             </form>
                         </td>
+                        <td>
+                            <a href="{{route('comments.show',$comment->id)}}">
+                                <i class="icon-eye"></i>
+                            </a>
+                        </td>
 
                     </tr>
                 @endforeach
@@ -88,6 +94,7 @@
                 <td>تاریخ ایجاد</td>
                 <td>وضعیت</td>
                 <td>عملیات</td>
+                <td>مشاهده</td>
             </thead>
         </table>
         <div>
