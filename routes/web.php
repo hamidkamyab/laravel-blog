@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Support\Facades\Route;
@@ -41,8 +43,11 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('posts',AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('photos',AdminPhotoController::class);
+    Route::patch('comments/{id}',[AdminCommentController::class,'action'])->name('comments.action');
+    Route::resource('comments',AdminCommentController::class);
 });
 
 
 Route::get('post/{slug}',[PostController::class,'show'])->name('post.show');
 Route::get('search',[PostController::class,'search'])->name('post.search');
+Route::post('commnet',[CommentController::class,'store'])->name('comment.store');

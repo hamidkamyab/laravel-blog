@@ -11,7 +11,7 @@
                 </div>
             </div>
         @endif
-        <table class="table table-hover">
+        <table class="table table-hover"  style="font-size: 14px">
             <thead>
                 <td>#</td>
                 <td>تصویر</td>

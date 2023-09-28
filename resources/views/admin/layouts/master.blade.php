@@ -113,6 +113,9 @@
                     <a class="nav-link" href="{{route('posts.create')}}"><i class="icon-doc"></i>ایجاد مطلب جدید</a>
                     <a class="nav-link" href="{{route('posts.index')}}"><i class="icon-docs"></i> لیست مطالب</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('comments.index')}}"><i class="fa fa-comments"></i> نظرات </a>
+                </li>
                 <li class="nav-title">
                     مدیریت دسته بندی ها
                 </li>

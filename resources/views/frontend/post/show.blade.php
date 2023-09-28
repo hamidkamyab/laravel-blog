@@ -46,18 +46,19 @@
                 <h2 class="widget-title text-white d-inline-block mb-4">دیدگاه</h2>
 
                 <div class="col-12">
-                    <form>
+                    <form action="{{route('comment.store')}}" method="Post">
+                        @csrf
                         <div class="form-group">
                             <label for="nameInput" style="font-weight: 700">نام:</label>
-                            <input type="text" class="form-control bg-dark-800" id="nameInput" />
+                            <input type="text" class="form-control bg-dark-800" id="nameInput" name="name" />
                         </div>
                         <div class="form-group">
                             <label for="emailInput" style="font-weight: 700">ایمیل:</label>
-                            <input type="email" class="form-control bg-dark-800" id="emailInput" />
+                            <input type="email" class="form-control bg-dark-800" id="emailInput" name="email" />
                         </div>
                         <div class="form-group">
                             <label for="bodyInput" style="font-weight: 700">متن دیدگاه</label>
-                            <textarea class="form-control bg-dark-800 h-auto" id="bodyInput" rows="10" ></textarea>
+                            <textarea class="form-control bg-dark-800 h-auto" id="bodyInput" name="body" rows="10" ></textarea>
                         </div>
                         <div class="form-group">
                            <button class="btn btn-sm btn-outline-red" style="letter-spacing: 0em;font-weight: bold" type="submit">ثـبـت نـظـر</button>
