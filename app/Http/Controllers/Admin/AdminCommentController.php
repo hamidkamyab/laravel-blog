@@ -65,7 +65,9 @@ class AdminCommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comments = Comment::where('id',$id)->orWhere('parent_id',$id)->delete();
+        Session::flash('delete_comment','دیدگاه مورد نظر با موفقیت حذف شد!');
+        return redirect(route('comments.index'));
     }
 
     public function action(Request $request, string $id)

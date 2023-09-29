@@ -34,6 +34,7 @@
                 <td>وضعیت</td>
                 <td>عملیات</td>
                 <td>مشاهده</td>
+                <td>حذف</td>
             </thead>
             <tbody>
                 @foreach ($comments as $key => $comment)
@@ -82,6 +83,15 @@
                                 <i class="icon-eye"></i>
                             </a>
                         </td>
+                        <td>
+                            <form action="{{route('comments.destroy',$comment->id)}}" method="POST" style="margin:0;">
+                                @csrf
+                                @method('DELETE')
+                                <button href="{{route('comments.destroy',$comment->id)}}" class="text-danger" style=" background: transparent; border:none;">
+                                    <i class="fa fa-close" style="font-size: 18px"></i>
+                                </button>
+                            </form>
+                        </td>
 
                     </tr>
                 @endforeach
@@ -95,6 +105,7 @@
                 <td>وضعیت</td>
                 <td>عملیات</td>
                 <td>مشاهده</td>
+                <td>حذف</td>
             </thead>
         </table>
         <div>
