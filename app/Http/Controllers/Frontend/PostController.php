@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Request as Input;
 class PostController extends Controller
 {
     public function show($slug){
-        $post = Post::with('user','photos','categories')->where('slug',$slug)->where('status',1)->first();
+        $post = Post::with(['user','photos','categories','comments'=>function($q){
+            $q->where('status',1);
+        }])->where('slug',$slug)->where('status',1)->first();
         $categories = Category::all();
         return view('frontend.post.show',compact('post','categories'));
     }

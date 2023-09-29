@@ -59,16 +59,17 @@
                 @endif
                 <h2 class="widget-title text-white d-inline-block mb-4">دیدگاه</h2>
                 <div class="col-12">
-                    <form action="{{ route('comment.store') }}" method="Post">
+                    <form action="{{ route('comment.store', $post->id) }}" method="Post">
                         @csrf
-                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
                         <div class="form-group">
                             <label for="nameInput" style="font-weight: 700">نام:</label>
-                            <input type="text" class="form-control bg-dark-800" id="nameInput" name="name" value="{{ old('name') }}" />
+                            <input type="text" class="form-control bg-dark-800" id="nameInput" name="name"
+                                value="{{ old('name') }}" />
                         </div>
                         <div class="form-group">
                             <label for="emailInput" style="font-weight: 700">ایمیل:</label>
-                            <input type="email" class="form-control bg-dark-800" id="emailInput" name="email" value="{{ old('email') }}" />
+                            <input type="email" class="form-control bg-dark-800" id="emailInput" name="email"
+                                value="{{ old('email') }}" />
                         </div>
                         <div class="form-group">
                             <label for="bodyInput" style="font-weight: 700">متن دیدگاه</label>
@@ -80,6 +81,33 @@
                         </div>
                     </form>
                 </div>
+
+                @foreach ($post->comments as $comment)
+                    <div class="d-flex flex-1 bg-dark-800 p-2 mb-2">
+
+                        <div class="d-flex flex-column w-100" style="gap: 8px">
+                            <div class="d-flex justify-content-between align-items-center"
+                                style="font-size: 14px;font-weight: 600">
+                                <div class="d-flex align-items-center" style="gap: 8px">
+                                    <i class="fa fa-pen" style="font-size: 12px;"></i>
+                                    <span>{{ $comment->name }}</span>
+                                </div>
+                                <div class="d-flex align-items-center" style="gap: 8px">
+                                    <i class="fa fa-calendar-alt" style="font-size: 12px;"></i>
+                                    <span>
+                                        {{ verta($comment->created_at)->format('H:i:s') }}
+                                        -
+                                        {{ verta($comment->created_at)->format('Y/m/d') }}
+                                    </span>
+                                </div>
+                            </div>
+                            <p class="p-2" style="background-color: rgb(60, 60, 65);font-size: 16px; border-radius: 6px">
+                                {{ $comment->body }}</p>
+                        </div>
+                    </div>
+                @endforeach
+
+
             </div>
 
 

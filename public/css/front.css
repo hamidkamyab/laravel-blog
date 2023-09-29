@@ -890,7 +890,6 @@ footer ul li:last-child a {
 .bg-dark-800 {
     background-color: rgb(40, 40, 45) !important;
     color: #fff;
-    border: 3px solid rgb(207, 207, 207) !important;
 }
 
 .btn-outline-red {
