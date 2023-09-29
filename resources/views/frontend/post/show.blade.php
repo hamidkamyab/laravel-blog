@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('meta')
-    <meta name="description" content="{{$post->meta_description}}">
-    <meta name="keywords" content="{{$post->meta_keywords}}">
-    <meta name="author" content="{{$post->user->name}}">
+    <meta name="description" content="{{ $post->meta_description }}">
+    <meta name="keywords" content="{{ $post->meta_keywords }}">
+    <meta name="author" content="{{ $post->user->name }}">
 @endsection
 
 @section('navigation')
-    @include('frontend.partials.navigation',$categories)
+    @include('frontend.partials.navigation', $categories)
 @endsection
 
 @section('content')
@@ -33,35 +33,50 @@
             </ul>
 
             <div class=" my-2">
-                <img src="{{asset($post->photos[0]->path)}}" class="img-fluid"  />
+                <img src="{{ asset($post->photos[0]->path) }}" class="img-fluid" />
             </div>
 
             <p dir="rtl" class="mb-4" style="text-align:justify; font-size: 18px;">
-                {{$post->body}}
+                {{ $post->body }}
             </p>
 
 
 
-            <div class="widget"  style="text-align:justify;" dir="rtl" >
+            <div class="widget" style="text-align:justify;" dir="rtl">
+                @if (Session::has('add_comment'))
+                    <div class="alert alert-success">
+                        <div>
+                            {{ Session('add_comment') }}
+                        </div>
+                    </div>
+                @endif
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <div><span>{{ $error }}</span></div>
+                        @endforeach
+                    </div>
+                @endif
                 <h2 class="widget-title text-white d-inline-block mb-4">دیدگاه</h2>
-
                 <div class="col-12">
-                    <form action="{{route('comment.store')}}" method="Post">
+                    <form action="{{ route('comment.store') }}" method="Post">
                         @csrf
+                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
                         <div class="form-group">
                             <label for="nameInput" style="font-weight: 700">نام:</label>
-                            <input type="text" class="form-control bg-dark-800" id="nameInput" name="name" />
+                            <input type="text" class="form-control bg-dark-800" id="nameInput" name="name" value="{{ old('name') }}" />
                         </div>
                         <div class="form-group">
                             <label for="emailInput" style="font-weight: 700">ایمیل:</label>
-                            <input type="email" class="form-control bg-dark-800" id="emailInput" name="email" />
+                            <input type="email" class="form-control bg-dark-800" id="emailInput" name="email" value="{{ old('email') }}" />
                         </div>
                         <div class="form-group">
                             <label for="bodyInput" style="font-weight: 700">متن دیدگاه</label>
-                            <textarea class="form-control bg-dark-800 h-auto" id="bodyInput" name="body" rows="10" ></textarea>
+                            <textarea class="form-control bg-dark-800 h-auto" id="bodyInput" name="body" rows="10">{{ old('body') }}</textarea>
                         </div>
                         <div class="form-group">
-                           <button class="btn btn-sm btn-outline-red" style="letter-spacing: 0em;font-weight: bold" type="submit">ثـبـت نـظـر</button>
+                            <button class="btn btn-sm btn-outline-red" style="letter-spacing: 0em;font-weight: bold"
+                                type="submit">ثـبـت نـظـر</button>
                         </div>
                     </form>
                 </div>
