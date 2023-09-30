@@ -82,7 +82,7 @@ class AdminCommentController extends Controller
         }
         return redirect(route('comments.index'));
     }
-    public function replay(Request $request, string $id)
+    public function reply(Request $request, string $id)
     {
         $comment = Comment::with('post')->findOrFail($id);
         Comment::create([

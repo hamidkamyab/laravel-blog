@@ -29,7 +29,7 @@
 
     <!-- Main Stylesheet -->
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <!--Favicon-->
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
@@ -299,6 +299,7 @@
     <script src="js/script.js"></script> --}}
 
     <script src="{{ asset('js/front.js') }}"></script>
+
 </body>
 
 </html>

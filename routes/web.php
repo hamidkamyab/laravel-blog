@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -44,11 +43,13 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('photos',AdminPhotoController::class);
     Route::patch('comments/{id}',[AdminCommentController::class,'action'])->name('comments.action');
-    Route::post('comments/{id}',[AdminCommentController::class,'replay'])->name('comments.replay');
+    Route::post('comments/{id}',[AdminCommentController::class,'reply'])->name('comments.reply');
     Route::resource('comments',AdminCommentController::class);
 });
 
 
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('post/{slug}',[PostController::class,'show'])->name('post.show');
 Route::get('search',[PostController::class,'search'])->name('post.search');
 Route::post('commnet/{post_id}',[CommentController::class,'store'])->name('comment.store');
+Route::post('commnet/{post_id}/{parent_id}',[CommentController::class,'reply'])->name('comment.reply');

@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="p-1" style="direction: rtl; background-color: rgb(191, 191, 191); margin-top: 5px">
-                    <form action="{{route('comments.replay',$comment->id)}}" method="POST">
+                    <form action="{{route('comments.reply',$comment->id)}}" method="POST">
                         @csrf
                         {{-- <input type="hidden" name="parent_id" value="{{$comment->id}}" />
                         <input type="hidden" name="post_id" value="{{$comment->post->id}}" /> --}}

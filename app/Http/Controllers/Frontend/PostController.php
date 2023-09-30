@@ -12,7 +12,10 @@ class PostController extends Controller
 {
     public function show($slug){
         $post = Post::with(['user','photos','categories','comments'=>function($q){
-            $q->where('status',1);
+            $q->where('status',1)
+            ->where('parent_id',null);
+        }, 'comments.replies'=>function($e){
+            $e->where('status',1);
         }])->where('slug',$slug)->where('status',1)->first();
         $categories = Category::all();
         return view('frontend.post.show',compact('post','categories'));

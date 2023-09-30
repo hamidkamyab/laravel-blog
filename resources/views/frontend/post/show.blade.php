@@ -9,7 +9,6 @@
 @section('navigation')
     @include('frontend.partials.navigation', $categories)
 @endsection
-
 @section('content')
     <div class="row justify-content-between">
         <div class="col-lg-10">
@@ -50,6 +49,13 @@
                         </div>
                     </div>
                 @endif
+                @if (Session::has('reply_comment'))
+                    <div class="alert alert-success">
+                        <div>
+                            {{ Session('reply_comment') }}
+                        </div>
+                    </div>
+                @endif
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
@@ -61,16 +67,18 @@
                 <div class="col-12">
                     <form action="{{ route('comment.store', $post->id) }}" method="Post">
                         @csrf
-                        <div class="form-group">
-                            <label for="nameInput" style="font-weight: 700">نام:</label>
-                            <input type="text" class="form-control bg-dark-800" id="nameInput" name="name"
-                                value="{{ old('name') }}" />
-                        </div>
-                        <div class="form-group">
-                            <label for="emailInput" style="font-weight: 700">ایمیل:</label>
-                            <input type="email" class="form-control bg-dark-800" id="emailInput" name="email"
-                                value="{{ old('email') }}" />
-                        </div>
+                        @guest
+                            <div class="form-group">
+                                <label for="nameInput" style="font-weight: 700">نام:</label>
+                                <input type="text" class="form-control bg-dark-800" id="nameInput" name="name"
+                                    value="{{ old('name') }}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="emailInput" style="font-weight: 700">ایمیل:</label>
+                                <input type="email" class="form-control bg-dark-800" id="emailInput" name="email"
+                                    value="{{ old('email') }}" />
+                            </div>
+                        @endguest
                         <div class="form-group">
                             <label for="bodyInput" style="font-weight: 700">متن دیدگاه</label>
                             <textarea class="form-control bg-dark-800 h-auto" id="bodyInput" name="body" rows="10">{{ old('body') }}</textarea>
@@ -82,35 +90,13 @@
                     </form>
                 </div>
 
-                @foreach ($post->comments as $comment)
-                    <div class="d-flex flex-1 bg-dark-800 p-2 mb-2">
-
-                        <div class="d-flex flex-column w-100" style="gap: 8px">
-                            <div class="d-flex justify-content-between align-items-center"
-                                style="font-size: 14px;font-weight: 600">
-                                <div class="d-flex align-items-center" style="gap: 8px">
-                                    <i class="fa fa-pen" style="font-size: 12px;"></i>
-                                    <span>{{ $comment->name }}</span>
-                                </div>
-                                <div class="d-flex align-items-center" style="gap: 8px">
-                                    <i class="fa fa-calendar-alt" style="font-size: 12px;"></i>
-                                    <span>
-                                        {{ verta($comment->created_at)->format('H:i:s') }}
-                                        -
-                                        {{ verta($comment->created_at)->format('Y/m/d') }}
-                                    </span>
-                                </div>
-                            </div>
-                            <p class="p-2" style="background-color: rgb(60, 60, 65);font-size: 16px; border-radius: 6px">
-                                {{ $comment->body }}</p>
-                        </div>
-                    </div>
-                @endforeach
-
+                @include('frontend.partials.comment',['comments'=>$post->comments])
 
             </div>
 
 
         </div>
     </div>
+
+
 @endsection

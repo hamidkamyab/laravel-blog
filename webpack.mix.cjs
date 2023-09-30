@@ -29,7 +29,7 @@ mix.styles([
     'resources/frontend/css/style.css',
     'resources/frontend/plugins/fontawesome/css/all.min.css',
 ], 'public/css/front.css').scripts([
-    'resources/frontend/plugins/jQuery/jquery.min.js',
+    // 'resources/frontend/plugins/jQuery/jquery.min.js',
     'resources/frontend/plugins/bootstrap/bootstrap.min.js',
     'resources/frontend/js/script.js',
     'resources/frontend/plugins/fontawesome/js/all.min.js',
