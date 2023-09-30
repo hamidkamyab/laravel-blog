@@ -27,13 +27,24 @@ class CommentController extends Controller
     {
         $post = Post::findOrFail($postId);
         if($post){
+            $status = 0;
+            $isAdmin = 0;
+            if(Auth::check()){
+                $status = 1;
+                $isAdmin = 1;
+                $name = Auth::user()->name;
+                $email = null;
+            }else{
+                $name = $request->name;
+                $email = $request->email;
+            }
             Comment::create([
-                'name' => $request->name,
-                'email' => $request->email,
+                'name' => $name,
+                'email' => $email,
                 'body' => $request->body,
                 'post_id'=>$postId,
-                'status' => 0,
-                'isAdmin' => 0,
+                'status' => $status,
+                'isAdmin' => $isAdmin,
             ]);
             Session::flash('add_comment','دیدگاه شما بعد از تایید مدیرسایت نمایش داده می شود!');
         }

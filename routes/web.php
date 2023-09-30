@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminPhotoController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PostController;
@@ -37,7 +37,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware('admin')->group(function () {
-    Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard.index');
+    Route::get('dashboard',[AdminDashboardController::class,'index'])->name('dashboard.index');
     Route::resource('users',AdminUserController::class);
     Route::resource('posts',AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);

@@ -24,10 +24,10 @@
                 <div class="card card-inverse card-info">
                     <div class="card-block p-b-0">
                         <div class="p-a-0 pull-left">
-                            <i class="icon-layers" style="font-size: 18px"></i>
+                            <i class="fa fa-comments-o" style="font-size: 18px"></i>
                         </div>
-                        <h4 class="m-b-0">{{ $categoriesCount }}</h4>
-                        <p>دسته بندی ها</p>
+                        <h4 class="m-b-0">{{ $commentsCount }}</h4>
+                        <p>نظرات</p>
                     </div>
                     <div class="chart-wrapper p-x-1" style="height:70px;">
                         <canvas id="card-chart2" class="chart" height="70"></canvas>
